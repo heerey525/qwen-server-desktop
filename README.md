@@ -200,3 +200,9 @@ Linux 上多半要单独装：`sudo apt install python3-tk`（Debian/Ubuntu）�
   不绕开的话访问 `127.0.0.1` 会被代理劫持返回 502，误判成"服务未就绪"。
 - **启动脚本硬编码 Python 候选路径**：从 Finder 双击时 PATH 只有
   `/usr/bin:/bin`，靠 `which python3` 找不到用户自己装的 Python。
+
+---
+
+## 许可证
+
+[MIT](LICENSE) © 2026 heerey525
