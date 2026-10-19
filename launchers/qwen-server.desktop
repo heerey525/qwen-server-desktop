@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Qwen Server Desktop
+Name[zh_CN]=Qwen 本地模型服务
+Comment=Graphical launcher for llama-server
+Comment[zh_CN]=llama-server 图形化启动器
+Exec=launch.sh
+Icon=utilities-terminal
+Terminal=false
+Categories=Development;Utility;
+Keywords=llama;qwen;gguf;llm;ai;
+StartupNotify=true
