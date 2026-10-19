@@ -1,8 +1,13 @@
 # Qwen Server Desktop
 
-把 `~/.local/bin/qwen-server` 那套命令行操作，收进一个能双击打开的窗口。
+把 `llama-server` 那套命令行操作，收进一个能双击打开的窗口。
 
 **零第三方依赖** —— 只用 Python 标准库（tkinter），不需要 `pip install` 任何东西。
+
+<img src="docs/screenshot.png" alt="Qwen Server Desktop 界面" width="880">
+
+> 本文档里出现的 `qwen-server` 指作者本机的一个启动脚本，**不在本仓库内**。
+> 本程序直接调用 `llama-server`，可执行文件路径可以在界面里自由指定。
 
 ---
 
@@ -19,7 +24,7 @@
 | 参数配置 | 端口、上下文、GPU 层数、驻留上限、KV 缓存、Flash Attention、Jinja |
 | 状态监视 | 指示灯 + PID + 端口 + 就绪进度 |
 | 实时日志 | 子进程输出逐行回显，带级别着色，同时落盘 |
-| **强制终止** | **按端口定位并结束进程（3098 qwen-server / 10100 opencodex）** |
+| **强制终止** | **按端口定位并结束进程（预置 3098 / 10100 两个示例端口）** |
 | 跨平台 | macOS / Windows / Linux 外观一致 |
 
 界面里的参数**和原脚本逐字对齐**，不会出现"界面上能跑、终端里跑不起来"。
@@ -70,7 +75,7 @@ cd qwen-desktop
 
 ### 界面里
 
-窗口底部的**「强制终止」**面板会实时显示两个端口的占用情况：
+窗口底部的**「强制终止」**面板会实时显示预设端口的占用情况：
 
 ```
 3098    qwen-server    PID 39227 llama-server      [终止]
@@ -80,8 +85,9 @@ cd qwen-desktop
 点「终止」会先弹确认框列出将杀的 PID 和进程名，确认后执行。
 先发 `SIGTERM` 让进程自己收拾，6 秒不响应才升级为 `SIGKILL`。
 
-> ⚠️ 10100 是 OpenCodex 的代理进程。终止后 OpenCodex.app 会断开连接，
-> 需要恢复的话在应用里重新启动即可。
+> 上面两个端口只是**默认预设**：3098 是本程序管理的 llama-server，
+> 10100 是另一个本地代理客户端。端口号和显示名都写在
+> `launchers/kill-port.sh` 顶部的 `DEFAULT_PORTS` 里，按自己的环境改即可。
 
 ### 命令行里
 
@@ -153,6 +159,8 @@ qwen-desktop/
 │   ├── config.py              配置持久化
 │   ├── server.py              进程管理、参数构建、健康探测
 │   └── theme.py               配色与 ttk 样式
+├── docs/
+│   └── screenshot.png         界面截图
 └── launchers/
     ├── launch.sh              macOS / Linux 通用启动器
     ├── launch.bat             Windows 启动器
